@@ -1,0 +1,5 @@
+Host dev-gcp-db31
+    HostName dev-gcp-db31
+    User dev_gcpchef01
+    IdentityFile ~/.ssh/dev_gcpchef01.pem
+    Port 22
