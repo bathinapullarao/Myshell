@@ -28,6 +28,17 @@
 
 # TODO(lingshi): Add "set -e".
 
+ /**   systemctl mask ctrl-alt-del.target
+    timedatectl set-timezone Etc/UTC
+    tuned-adm profile gcm
+    tuned-adm active
+    sysctl -p /etc/sysctl.d/gcm.conf
+    curl -s https://dl.google.com/cloudagents/install-monitoring-agent.sh --output "/tmp/install-monitoring-agent.sh"
+    bash /tmp/install-monitoring-agent.sh
+    service stackdriver-agent stop   **/
+
+
+
 # Name of the monitoring agent.
 AGENT_NAME='stackdriver-agent'
 
