@@ -1,9 +1,9 @@
 #!/bin/sh
-for host in  dev-gcm-db04
+for host in  dev-gcp-db04
 do
   echo "================================ Disc Capacity for $host ================================="
-  ssh -i  ${HOME}/.ssh/dev_gcmchef01.pem dev_gcmchef01@$host "df -h"
-  ssh -i  ${HOME}/.ssh/dev_gcmchef01.pem dev_gcmchef01@$host "sh /home/dev_gcmchef01/.mail/mail.sh"
+  ssh -i  ${HOME}/.ssh/dev_gcpchef01.pem dev_gcpchef01@$host "df -h"
+  ssh -i  ${HOME}/.ssh/dev_gcpchef01.pem dev_gcpchef01@$host "sh /home/dev_gcpchef01/.mail/mail.sh"
   echo "================================================================================================="
   echo "                                                                                          "
 done
