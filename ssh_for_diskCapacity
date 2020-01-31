@@ -7,3 +7,26 @@ do
   echo "================================================================================================="
   echo "                                                                                          "
 done
+
+
+/home/dev_gcpchef01/.mail/mail.sh
+
+#!/bin/bash
+HOST=$1
+SUB="$HOST Warning : Disk error"
+#sending mail to
+TO="Vajrala@gmail.com,Bathina.Pullarao@gmail.com"
+CURRENT=$(df / | grep / | awk '{ print $5}' | sed 's/%//g')
+CURRENT1=$(df /var/lib/jenkins | grep / | awk '{ print $5}' | sed 's/%//g')
+THRESHOLD=90
+if [[ ("$CURRENT" -gt "$THRESHOLD") || ("$CURRENT1" -gt "$THRESHOLD") ]]; then
+echo    "Hi Infra Team,
+
+**********************************************Disk Utilization  Alert****************************************
+Running out of space on server $(hostname)
+Disk utilization for / is: $CURRENT%
+Disk utilization for /var/lib/jenkins is: $CURRENT1%
+
+
+*************************************************************************************************************" | mail -s "$SUB" $TO
+fi
