@@ -1,0 +1,3 @@
+#!/bin/sh
+find /var/log/mysql/ -type f -mtime +20 -delete
+find /var/log/mysql/ -type f -mtime +0 -regex "\/var\/log\/mysql\/mysql_.*log$" -exec /bin/gzip {} \;
