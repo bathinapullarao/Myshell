@@ -1,0 +1,37 @@
+#!/bin/bash
+#Script to create a specific-directory
+if [ "$#" -eq 1 ]; then
+        path='/usr/local'                                                       #declare varible
+        webap=test1
+        sudo mkdir -p $path/project/release                                     #create directory relase
+        sudo chown -R devops_bpr:devops_bpr $path/project                       #change the ownership
+        cd /tmp/                                                                #move to tmp directory
+        sudo rm -rf release                                                     #remove old release dir in tmp dir
+        git clone https://github.com/bathinapullarao/release.git                #Clone the project from github
+        sudo rm -rf $path/project/release/*
+        cp -R /tmp/release/* /usr/local/project/release/
+        sudo rm -rf /tmp/test*
+        cd /usr/local/project/release/
+        tar -zcvf /tmp/test_$(date +%Y%d%m)_$1.tar.gz *
+        ssh $webap "sudo mkdir -p /usr/local/download"                          #create dir in destination server
+        ssh $webap "sudo chown -R devops_bpr:devops_bpr /usr/local/download"
+        ssh $webap "sudo rm -rf /usr/local/download/test*"                          #remove old files in test dir
+        scp -r /tmp/test* $webap:/usr/local/download/
+        ssh $webap "sudo mkdir -p /tmp/backup$1"
+        ssh $webap "sudo mv /usr/local/myApp/* /tmp/backup$1"                   #move the old buld to backupdir
+        ssh $webap "sudo tar -zxvf /usr/local/download/test* -C /usr/local/myApp/"  #apply new buld
+else
+        echo "Arguments are not equals to 1"
+        exit 1
+fi
+
+
+#!/bin/bash
+if [ "$#" -eq 1 ]; then
+webap=test1
+        ssh $webap "sudo rm -rf /usr/local/myApp/*"                            #remove the application
+        ssh $webap "sudo cp -r /tmp/backup$1/* /usr/local/myApp/"
+else
+        echo "Arguments are not equals to 1"
+        exit 1
+fi
