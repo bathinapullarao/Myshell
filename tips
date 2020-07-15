@@ -1,3 +1,5 @@
+postfix: https://qiita.com/yoshidna/items/2d0b89086914a7be73a4
+
 sed -i -e "s|GCM_FQDN|${gcm_fqdn}|g" ${sugar_env_conf}
 sed -i -e "s/320d8500353257a52ab3e47201d4588e/${sugar_unique_key}/g" ${sugar_conf}
 
