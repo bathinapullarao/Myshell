@@ -13,6 +13,8 @@ fi
 
 #    GCS mount
 mount -t gcsfuse -o implicit_dirs,uid=48,gid=48,allow_other ${upload_backet_name} /var/www/html/upload
+# unmount
+fusermount -u /srv/docker-compose/jenkins/jenkins_home/ossb-p-services/p-v2
 
 # /etc/crontab
 echo "# SugarCRM Sucheduled JOB (DF-106)" >> /etc/crontab
