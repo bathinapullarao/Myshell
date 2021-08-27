@@ -1,0 +1,6 @@
+checktool:
+  webhook: https://hooks.slack.com/services/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
+  channel_name: team_gcm
+proxy:
+  IP_address: 10.115.0.199
+  Port: 8888
